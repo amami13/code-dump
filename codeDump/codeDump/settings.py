@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages'
+    'codedumpApi.apps.CodedumpapiConfig',
+    'rest_framework',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +126,14 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
 
 # set parameters for connection with S3 object
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
