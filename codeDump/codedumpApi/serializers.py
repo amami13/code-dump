@@ -14,11 +14,10 @@ class FileSerializer(serializers.ModelSerializer):
     file_versions = FileVersionSerializer(many=True)
 
     def create(self, validated_data):
-        
         file_versions = validated_data.pop('file_versions')
-        
+
         file = File.objects.create(**validated_data)
-        
+
         text = file_versions.pop('text')
         name = file_versions.pop('name')
         text_file = StringIO(text)
@@ -29,7 +28,7 @@ class FileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = File
-        fields = ['uuid', 'name', 'user', 'upvote', 'downvote']
+        fields = ['uuid', 'name', 'user', 'upvote', 'downvote', 'file_versions']
         
 
 

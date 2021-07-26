@@ -18,4 +18,4 @@ class File(models.Model):
 class FileVersion(models.Model):
     text = models.FileField()
     created = models.DateTimeField(auto_now_add=True)
-    file = models.ForeignKey(File)
+    file = models.ForeignKey(File, on_delete=models.CASCADE)
