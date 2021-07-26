@@ -1,0 +1,4 @@
+django-shortuuidfield
+djangorestframework
+markdown
+django-storage
