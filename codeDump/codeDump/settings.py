@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'codedumpApi.apps.CodedumpapiConfig',
-    'rest_framework'
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -126,9 +125,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ]
-}
+# set parameters for connection with S3 object
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_ENDPOINT_URL = 'http://40.71.58.82:8080/'
+AWS_ACCESS_KEY_ID = 'CodeDump'
+AWS_SECRET_ACCESS_KEY = 'Aa123456'
+AWS_STORAGE_BUCKET_NAME = 'code-dump'
+AWS_S3_FILE_OVERWRITE = False
