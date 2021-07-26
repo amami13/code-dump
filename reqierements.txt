@@ -1,4 +1,4 @@
 django-shortuuidfield
 djangorestframework
 markdown
-django-storage
+django-storages

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from shortuuidfield import ShortUUIDField
-import datetime
+
 
 # Create your models here.
 class File(models.Model):
@@ -14,8 +14,8 @@ class File(models.Model):
     def __str__(self):
         return self.name
 
+
 class FileVersion(models.Model):
-    file = models.FileField()
+    text = models.FileField()
     created = models.DateTimeField(auto_now_add=True)
-    main_file = models.ForeignKey(File)
-    
+    file = models.ForeignKey(File)

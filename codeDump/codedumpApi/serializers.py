@@ -1,3 +1,5 @@
+from io import StringIO
+
 from .models import *
 from rest_framework import serializers
 
@@ -6,6 +8,7 @@ class FileVersionSerializer(serializers.ModelSerializer):
     class Meta:
         model = FileVersion
         fields = ['created']
+
 
 class FileSerializer(serializers.ModelSerializer):
     file_versions = FileVersionSerializer(many=True)
@@ -16,9 +19,12 @@ class FileSerializer(serializers.ModelSerializer):
         
         file = File.objects.create(**validated_data)
         
-        file_text = File
+        text = file_versions.pop('text')
+        name = file_versions.pop('name')
+        text_file = StringIO(text)
+        text_file.name = name
         for file_version in file_versions:
-            FileVersion.objects.create(file=file, **file_version)
+            FileVersion.objects.create(file=file, text=text_file, **file_version)
         return file
 
     class Meta:
